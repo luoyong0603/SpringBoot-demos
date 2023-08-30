@@ -1,8 +1,42 @@
 spring:
-  quartz:
-    job-store-type: jdbc  #指定Quartz的存储方式
   datasource:
+    name: db_quartz
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/springboot_db?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://localhost:3306/db_quartz?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=UTF8&rewriteBatchedStatements=true
     username: root
     password: 123456
+
+  #quartz配置
+  quartz:
+    #数据存储方式 默认是 MEMORY（内存方式）
+    job-store-type: jdbc
+    properties:
+      org:
+        quartz:
+          scheduler:
+            #调度标识名
+            instanceName: clusteredScheduler
+            #ID设置为自动获取 每一个必须不同
+            instanceId: AUTO
+          jobStore:
+            #数据保存方式为持久化
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            #数据库平台
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            #表的前缀
+            tablePrefix: QRTZ_
+            #加入集群
+            isClustered: false
+            #调度实例失效的检查时间间隔
+            clusterCheckinInterval: 10000
+            #设置为TRUE不会出现序列化非字符串类到 BLOB 时产生的类版本问题
+            useProperties: false
+          threadPool:
+            #ThreadPool 实现的类名
+            class: org.quartz.simpl.SimpleThreadPool
+            #线程数量
+            threadCount: 5
+            #线程优先级
+            threadPriority: 5
+            #自创建父线程
+            threadsInheritContextClassLoaderOfInitializingThread: true

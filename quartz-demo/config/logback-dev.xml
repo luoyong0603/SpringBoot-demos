@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration scan="true" scanPeriod="5 minutes">
+    <!-- 日志目录 -->
+    <property name="LOG_HOME" value="logs/quartz-System" />
+    <!-- 控制台日志 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- 日志打印格式 -->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 系统日志 -->
+    <appender name="sysLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 系统日志名称sys.log -->
+        <file>${LOG_HOME}/sys.log</file>
+        <!-- 日志备份规则：sys.log.yyyy-MM-dd -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/bak/sys.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <!-- 日志打印格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%L -
+                %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 错误日志 -->
+    <appender name="errorLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，该日志只记录error级别的日志，logger无需设置level -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <!-- 日志名称：error.log -->
+        <file>${LOG_HOME}/error.log</file>
+        <!-- 日志备份规则：error.log.yyyy-MM-dd -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/bak/error.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <!-- 日志打印格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%L -
+                %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 接口日志 -->
+    <appender name="apiLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 日志名称：api.log -->
+        <file>${LOG_HOME}/api.log</file>
+        <!-- 日志备份规则：api.log.yyyy-MM-dd -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/bak/api.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <!-- 日志打印格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%L -
+                %msg%n
+            </pattern>
+        </encoder>
+    </appender>
+
+    <!-- 普通操作日志 -->
+    <appender name="opLog"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，该日志只记录非error日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>DENY</onMatch>
+            <onMismatch>ACCEPT</onMismatch>
+        </filter>
+        <!-- 日志名称：quartz_system.log -->
+        <file>${LOG_HOME}/quartz_system.log</file>
+        <!-- 日志备份规则：quartz_system.log.yyyy-MM-dd -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_HOME}/bak/quartz_system.log.%d{yyyy-MM-dd}</fileNamePattern>
+        </rollingPolicy>
+        <!-- 日志打印格式 -->
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger:%L -
+                %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 错误日志 -->
+    <logger name="com.example.quartzdemo" additivity="false">
+        <!-- 将异常日志记录到errorLog中 -->
+        <appender-ref ref="errorLog" />
+        <!-- 将日志打印到控制台 -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- 操作日志，记录com.system.xiaoma下面的所有非error日志 -->
+    <logger name="com.example.quartzdemo" additivity="false">
+        <!-- 将日志记录到opLog中 -->
+        <appender-ref ref="opLog" />
+        <!-- 将日志打印到控制台 -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- mybatis日志 -->
+    <logger name="com.example.quartzdemo.dao" level="DEBUG" additivity="false">
+        <!-- mybatis日志记录到sysLog -->
+        <appender-ref ref="opLog" />
+        <!-- mybatis日志打印到控制台 -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- api日志 -->
+    <logger name="apiLog" additivity="false">
+        <!-- api日志 -->
+        <appender-ref ref="apiLog"/>
+        <!-- 将日志打印到控制台 -->
+        <appender-ref ref="STDOUT" />
+    </logger>
+
+    <!-- 根日志 -->
+    <root level="INFO">
+        <!-- 记录到sys.log -->
+        <appender-ref ref="sysLog" />
+        <!-- 打印到控制台 -->
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
