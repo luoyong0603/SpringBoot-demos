@@ -1,6 +1,5 @@
 package com.example.quartzdemo.controller;
 
-import com.example.quartzdemo.param.DeleteTaskModel;
 import com.example.quartzdemo.param.OperationModel;
 import com.example.quartzdemo.param.QuartzModel;
 import com.example.quartzdemo.service.QuartzService;
