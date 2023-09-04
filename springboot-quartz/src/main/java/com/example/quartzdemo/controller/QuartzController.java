@@ -4,6 +4,7 @@ import com.example.quartzdemo.param.DeleteTaskModel;
 import com.example.quartzdemo.param.OperationModel;
 import com.example.quartzdemo.param.QuartzModel;
 import com.example.quartzdemo.service.QuartzService;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +17,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/quartz")
+@Api(tags = "quartz相关控制器", description = "quartz相关控制器")
 public class QuartzController {
 
     @Autowired

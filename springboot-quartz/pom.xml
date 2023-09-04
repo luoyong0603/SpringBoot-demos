@@ -9,9 +9,9 @@
         <relativePath/>
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>quartz-demo</artifactId>
+    <artifactId>springboot-quartz</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>quartz-demo</name>
+    <name>springboot-quartz</name>
     <description>Spring Boot 集成 Quartz（任务调度框架）</description>
     <properties>
         <java.version>1.8</java.version>
