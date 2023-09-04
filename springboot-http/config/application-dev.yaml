@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    name: springboot_db
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/springboot_db?useSSL=false&serverTimezone=Asia/Shanghai&characterEncoding=UTF8&rewriteBatchedStatements=true
+    username: root
+    password: 123456
+
+# 日志设置
+logging:
+  level:
+    # 持久层日志级别
+    com.example.springboothttp.dao: debug
