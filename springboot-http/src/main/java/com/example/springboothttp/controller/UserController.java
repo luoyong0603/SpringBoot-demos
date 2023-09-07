@@ -6,10 +6,7 @@ import com.example.springboothttp.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author bug菌
@@ -29,6 +26,13 @@ public class UserController {
     @ApiOperation(value = "根据用户名和年龄查询", notes = "根据用户名和年龄查询")
     public UserEntity queryUserByNameAndAge(@RequestBody QueryUser model) {
         return userService.queryUserByNameAndAge(model);
+    }
+
+    //根据id查询
+    @GetMapping("/get-user-by-id")
+    @ApiOperation(value = "根据id查询", notes = "根据id查询")
+    public UserEntity getUserById(@RequestParam("id") Integer id) {
+        return userService.getById(id);
     }
 
 

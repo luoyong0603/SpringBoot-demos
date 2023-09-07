@@ -6,15 +6,15 @@ import org.springframework.web.bind.annotation.*;
 
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/user-demo")
 @Api(tags = "RestTemplateTest模块", description = "RestTemplateTest模块")
 public class RestTemplateTestController {
 
     /**
      * 模拟接口给http调用
      */
-    @GetMapping("/{id}")
-    public String get(@PathVariable("id") Long id) {
+    @GetMapping("/get-hello")
+    public String getHello() {
         return "hello,world!";
     }
 

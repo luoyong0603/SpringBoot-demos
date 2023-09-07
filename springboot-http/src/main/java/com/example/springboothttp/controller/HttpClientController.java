@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
  */
 public class HttpClientController {
 
+    //get请求
 //    public static void main(String[] args) {
 //        CloseableHttpClient httpClient = HttpClientBuilder.create().build();
 //        HttpGet httpGet = new HttpGet("http://www.baidu.com");

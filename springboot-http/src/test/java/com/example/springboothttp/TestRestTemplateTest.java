@@ -11,9 +11,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
@@ -28,7 +31,7 @@ public class TestRestTemplateTest {
     @Test
     public void testGet() {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
-        HttpGet httpGet = new HttpGet("http://localhost:8082/user/1");
+        HttpGet httpGet = new HttpGet("http://localhost:8082/user-demo/get-hello");
         HttpResponse response = null;
         try {
             response = httpClient.execute(httpGet);
@@ -40,4 +43,6 @@ public class TestRestTemplateTest {
             e.printStackTrace();
         }
     }
+
+
 }
