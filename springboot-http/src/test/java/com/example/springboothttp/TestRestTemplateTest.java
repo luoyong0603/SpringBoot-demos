@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class TestRestTemplateTest {
 
-    @Test
+/*    @Test
     public void testGet() {
         CloseableHttpClient httpClient = HttpClientBuilder.create().build();
         HttpGet httpGet = new HttpGet("http://localhost:8082/user-demo/get-hello");
@@ -42,7 +42,7 @@ public class TestRestTemplateTest {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
 
 }

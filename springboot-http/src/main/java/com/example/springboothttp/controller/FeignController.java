@@ -23,4 +23,5 @@ public class FeignController {
     public UserEntity getUserInfo(@RequestBody QueryUser model) {
         return gitHubClient.queryUserByNameAndAge(model);
     }
+
 }
