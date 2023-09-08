@@ -5,7 +5,6 @@ package com.example.springbootscala;
  * @version 1.0
  * @date 2023/9/7 18:05
  */
-package com.example.demo;
 
 import com.example.springbootscala.controller.HelloService;
 import org.junit.jupiter.api.Test;
