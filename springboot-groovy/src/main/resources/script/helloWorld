@@ -1,0 +1,29 @@
+package script
+
+import com.example.springbootgroovy.service.GroovyInvokeJavaDemo
+import com.example.springbootgroovy.groovyshell.ShellGroovyDTO
+import com.example.springbootgroovy.utils.SpringContextUtil
+
+def helloWorld() {
+    return "hello groovy"
+}
+
+helloWorld()
+
+def cal(int a, int b) {
+    ShellGroovyDTO dto = new ShellGroovyDTO()
+    dto.setA(a)
+    dto.setB(b)
+    dto.setNum(a + b)
+    return dto
+};
+
+cal(a, b)
+
+
+def groovyInvokeJavaMethod(int a, int b) {
+    GroovyInvokeJavaDemo groovyInvokeJavaDemo = SpringContextUtil.getBean("groovyInvokeJavaDemo")
+    return groovyInvokeJavaDemo.groovyInvokeJavaParam(a, b);
+}
+
+groovyInvokeJavaMethod(a, b)
