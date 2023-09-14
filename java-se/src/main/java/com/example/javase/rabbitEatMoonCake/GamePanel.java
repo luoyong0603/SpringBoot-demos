@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.drawString("历史最高分：" + higtScore + "分", 770, 50);
         g.drawString("难度：" + level + "级", 770, 65);
         g.drawString("操作说明：", 10, 30);
-        g.drawString("↑ ↓ ← → 分别控制兔子上、下、左、右移动。", 30, 50);
+        g.drawString("↑ ↓ ← → 分别控制兔子上、下、左、右移动；空格开始/暂停游戏！", 30, 50);
 
 
         //画食物
