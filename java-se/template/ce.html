@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>嫦娥数字拼图</title>
+    <style type="text/css">
+        #puzzle {
+            width: 300px;
+            border: 1px solid black;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        #puzzle button {
+            width: 90px;
+            height: 90px;
+            font-size: 48px;
+        }
+
+        #puzzle label {
+            font-size: 24px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="puzzle">
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <br>
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <br>
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <button onclick="move(this)"></button>
+    <br>
+    <label id="info"></label>
+</div>
+<script type="text/javascript">
+    var nums = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+    var btnArr = document.getElementsByTagName("button");
+
+    for (var i = 0; i < btnArr.length; i++) { // 初始化按钮上的数字
+        btnArr[i].innerHTML = nums[Math.floor(i / 3)][i % 3];
+    }
+
+    function move(btn) {
+        var index = getIndex(btn);
+        var i = Math.floor(index / 3);
+        var j = index % 3;
+
+        if (j > 0 && nums[i][j - 1] == 0) { // 左移
+            nums[i][j - 1] = nums[i][j];
+            nums[i][j] = 0;
+        }
+        if (j < 2 && nums[i][j + 1] == 0) { // 右移
+            nums[i][j + 1] = nums[i][j];
+            nums[i][j] = 0;
+        }
+        if (i > 0 && nums[i - 1][j] == 0) { // 上移
+            nums[i - 1][j] = nums[i][j];
+            nums[i][j] = 0;
+        }
+        if (i < 2 && nums[i + 1][j] == 0) { // 下移
+            nums[i + 1][j] = nums[i][j];
+            nums[i][j] = 0;
+        }
+
+        for (var i = 0; i < btnArr.length; i++) { // 更新按钮上的数字
+            btnArr[i].innerHTML = nums[Math.floor(i / 3)][i % 3];
+        }
+
+        var isSuccess = checkSuccess(); // 判断是否成功
+        if (isSuccess) {
+            document.getElementById("info").innerHTML = "恭喜你，成功了！";
+        } else {
+            document.getElementById("info").innerHTML = "";
+        }
+    }
+
+    function getIndex(btn) {
+        for (var i = 0; i < btnArr.length; i++) {
+            if (btnArr[i] == btn) {
+                return i;
+            }
+        }
+    }
+
+    function checkSuccess() {
+        var success = [[1, 2, 3], [4, 5, 6], [7, 8, 0]];
+        for (var i = 0; i < success.length; i++) {
+            for (var j = 0; j < success[i].length; j++) {
+                if (nums[i][j] != success[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
