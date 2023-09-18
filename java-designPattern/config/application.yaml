@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    # 控制使用哪套环境变量
+    active: dev
+server:
+  port: 8081
+
+
