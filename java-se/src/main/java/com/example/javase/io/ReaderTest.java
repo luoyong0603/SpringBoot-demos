@@ -6,6 +6,4 @@ package com.example.javase.io;
 public class ReaderTest {
 
 
-
-
 }
