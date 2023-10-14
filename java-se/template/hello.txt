@@ -1,1 +1,1 @@
-hello,my friends!
+Hello, FileWriter!
