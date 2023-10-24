@@ -4,11 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 /**
- * @Author 喵手
+ * @Author ms
  * @Date 2023-10-23 20:55
  */
 public class CollectionTest {
-
 
         public static void main(String[] args) {
             Collection<String> c1 = new ArrayList<String>();
